@@ -36,7 +36,7 @@ export function ContactSection() {
 
         <AnimatedSection delay={0.1}>
           <div className="grid max-w-5xl mx-auto gap-6 lg:grid-cols-2">
-            <Card className="p-8">
+            <Card className="p-8 pressable">
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <Mail className="h-6 w-6 text-primary shrink-0" />
@@ -103,7 +103,7 @@ export function ContactSection() {
               </div>
             </Card>
 
-            <Card className="p-8 bg-card/70 backdrop-blur">
+            <Card className="p-8 bg-card/70 backdrop-blur pressable">
               <div className="space-y-4">
                 <p className="text-sm font-semibold uppercase tracking-wide text-primary">Availability</p>
                 <p className="text-2xl font-bold leading-tight">{profile.availability}</p>

@@ -26,7 +26,7 @@ export function SkillsSection() {
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
           {Object.entries(skills).map(([category, items], i) => (
             <AnimatedSection key={category} delay={i * 0.1}>
-              <Card className="p-6 hover:shadow-lg transition-all">
+              <Card className="p-6 hover:shadow-lg transition-all pressable">
                 <h3 className="text-xl font-bold mb-4 text-primary">{category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {items.map((skill) => (

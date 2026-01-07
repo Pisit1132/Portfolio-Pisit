@@ -143,7 +143,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               </Card>
             </div>
 
-            <Card className="p-6 space-y-3">
+            <Card className="p-6 space-y-3 pressable">
               <div className="flex items-center justify-between gap-3 flex-wrap">
                 <h2 className="text-xl font-semibold">Case Study Brief</h2>
                 <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary uppercase">
@@ -224,7 +224,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
           {/* Gallery */}
           {project.images.length > 1 && (
-            <Card className="p-4">
+            <Card className="p-4 pressable">
               <h2 className="text-xl font-semibold mb-3">Gallery</h2>
               <div className="grid gap-3 sm:grid-cols-2">
                 {project.images.slice(1).map((img, i) => (
@@ -245,7 +245,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
           {/* Problem */}
           {project.problem && (
-            <Card className="p-6">
+            <Card className="p-6 pressable">
               <h2 className="text-2xl font-bold mb-4">Problem</h2>
               <p className="text-muted-foreground leading-relaxed">{project.problem}</p>
             </Card>
@@ -253,7 +253,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
           {/* Solution */}
           {project.solution && (
-            <Card className="p-6">
+            <Card className="p-6 pressable">
               <h2 className="text-2xl font-bold mb-4">Solution</h2>
               <p className="text-muted-foreground leading-relaxed">{project.solution}</p>
             </Card>

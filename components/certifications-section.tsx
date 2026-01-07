@@ -41,7 +41,7 @@ export function CertificationsSection() {
         <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-6">
           {certifications.map((cert, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <Card className="p-6 hover:shadow-lg transition-all hover:-translate-y-1 group">
+              <Card className="p-6 hover:shadow-lg transition-all hover:-translate-y-1 group pressable">
                 <Award className="h-12 w-12 text-primary mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-lg font-bold mb-2">{cert.title}</h3>
                 <p className="text-muted-foreground mb-4">{cert.issuer}</p>

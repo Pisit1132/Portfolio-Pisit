@@ -16,7 +16,7 @@ export function EducationSection() {
 
         <div className="w-full max-w-4xl space-y-6">
           <AnimatedSection>
-            <Card className="p-6 hover:shadow-lg transition-all bg-card/70 backdrop-blur border-border/60">
+            <Card className="p-6 hover:shadow-lg transition-all bg-card/70 backdrop-blur border-border/60 pressable">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                 <GraduationCap className="h-8 w-8 text-primary shrink-0" />
                 <div className="space-y-2 text-left">
@@ -28,7 +28,7 @@ export function EducationSection() {
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
-            <Card className="p-6 hover:shadow-lg transition-all bg-card/70 backdrop-blur border-border/60 lg:border-l-4 lg:border-l-blue-500">
+            <Card className="p-6 hover:shadow-lg transition-all bg-card/70 backdrop-blur border-border/60 lg:border-l-4 lg:border-l-blue-500 pressable">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                 <Plane className="h-8 w-8 text-blue-500 shrink-0" />
                 <div className="space-y-2 text-left">

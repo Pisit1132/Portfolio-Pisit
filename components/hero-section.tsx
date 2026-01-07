@@ -194,7 +194,7 @@ export function HeroSection() {
                 {featured.map((project) => (
                   <div
                     key={project.slug}
-                    className="rounded-xl border border-border/60 bg-card/80 p-4 shadow-sm backdrop-blur-sm"
+                    className="rounded-xl border border-border/60 bg-card/80 p-4 shadow-sm backdrop-blur-sm pressable"
                   >
                     <p className="text-xs font-semibold uppercase text-primary">Featured Project</p>
                     <h3 className="text-lg font-bold text-foreground">{project.title}</h3>
@@ -210,12 +210,6 @@ export function HeroSection() {
                           Live
                         </a>
                       )}
-                      <Link
-                        href={`/projects/${project.slug}`}
-                        className="rounded-full border border-border px-3 py-1 text-foreground hover:bg-muted/50"
-                      >
-                        Case Study
-                      </Link>
                       {project.links.github && project.links.github !== "#" && (
                         <a
                           href={project.links.github}

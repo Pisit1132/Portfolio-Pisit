@@ -72,7 +72,7 @@ export default function ProjectsPage() {
           {filteredProjects.map((project, i) => (
             <AnimatedSection key={project.slug} delay={i * 0.05}>
               <motion.div whileHover={{ y: -8 }} transition={{ duration: 0.2 }}>
-                <Card className="group flex h-full flex-col overflow-hidden border-border/50 bg-card/60 shadow-sm backdrop-blur transition-all hover:-translate-y-1 hover:shadow-xl">
+                <Card className="group flex h-full flex-col overflow-hidden border-border/50 bg-card/60 shadow-sm backdrop-blur transition-all hover:-translate-y-1 hover:shadow-xl pressable">
                   <div className="relative aspect-4/3 w-full overflow-hidden border-b border-border/50">
                     <Image
                       src={project.images[0] || "/placeholder.jpg"}

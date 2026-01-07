@@ -62,6 +62,7 @@ export function Navbar() {
                 "text-sm font-medium transition-colors hover:text-primary relative",
                 isActive(item.href) ? "text-foreground" : "text-muted-foreground",
               )}
+              aria-current={isActive(item.href) ? "page" : undefined}
             >
               {item.label}
               {isActive(item.href) && (
@@ -103,8 +104,9 @@ export function Navbar() {
                       href={item.href}
                       className={cn(
                         "block rounded-lg px-3 py-2 text-base font-medium transition-colors hover:bg-muted",
-                        isActive(item.href) ? "text-foreground" : "text-muted-foreground",
+                        isActive(item.href) ? "text-foreground bg-muted/70 border border-border/60" : "text-muted-foreground",
                       )}
+                      aria-current={isActive(item.href) ? "page" : undefined}
                     >
                       {item.label}
                     </Link>

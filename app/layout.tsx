@@ -8,6 +8,7 @@ import { Navbar } from "@/components/navbar"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { Footer } from "@/components/footer"
 import { CursorTrail } from "@/components/cursor-trail"
+import { QuickActionsMobile } from "@/components/quick-actions-mobile"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -47,6 +48,7 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="portfolio-theme">
             <ScrollProgress />
             <CursorTrail />
+            <QuickActionsMobile />
             <Navbar />
             <main className="flex-1 w-full">{children}</main>
             <Footer />

@@ -58,7 +58,7 @@ export function ExperienceSection() {
                   <div className="relative mt-2 hidden h-4 w-4 rounded-full border-4 border-background bg-primary shadow md:block">
                     <div className="absolute inset-[-6px] rounded-full border border-primary/40" />
                   </div>
-                  <Card className="flex-1 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+                <Card className="flex-1 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg pressable">
                     <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
                       <div>
                         <h3 className="text-xl font-bold">{exp.title}</h3>
