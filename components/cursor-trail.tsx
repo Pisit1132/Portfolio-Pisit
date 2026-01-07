@@ -22,15 +22,24 @@ export function CursorTrail() {
   const particlesRef = useRef<Particle[]>([])
   const animRef = useRef<number | null>(null)
   const [enabled, setEnabled] = useState(false)
+  const [isTouch, setIsTouch] = useState(false)
 
   // read preference on mount
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY)
     if (saved === "true") setEnabled(true)
+
+    const mq = window.matchMedia("(pointer: coarse)")
+    const touchDetected = mq.matches || "ontouchstart" in window
+    setIsTouch(touchDetected)
+
+    const handler = (event: MediaQueryListEvent) => setIsTouch(event.matches)
+    mq.addEventListener("change", handler)
+    return () => mq.removeEventListener("change", handler)
   }, [])
 
   useEffect(() => {
-    if (!enabled) {
+    if (!enabled || isTouch) {
       // clear particles if turning off
       particlesRef.current = []
       const ctx = canvasRef.current?.getContext("2d")
@@ -110,6 +119,8 @@ export function CursorTrail() {
       return next
     })
   }
+
+  if (isTouch) return null
 
   return (
     <>
