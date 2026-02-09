@@ -1,13 +1,8 @@
-import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
 import Script from "next/script"
-
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+import { profile } from "@/lib/profile"
+import { LanguageProvider } from "@/components/language-provider"
+import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pisitdev.com"),
@@ -33,7 +28,11 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Pisit Sirisingskul" }],
   alternates: {
-    canonical: "https://pisitdev.com",
+    canonical: "https://pisitdev.com/th",
+    languages: {
+      en: "https://pisitdev.com",
+      th: "https://pisitdev.com/th",
+    },
   },
   robots: {
     index: true,
@@ -51,7 +50,7 @@ export const metadata: Metadata = {
     description:
       "ฟรีแลนซ์ทำเว็บไซต์ธุรกิจ เว็บไซต์องค์กร อีคอมเมิร์ซ โหลดเร็ว รองรับ SEO เหมาะกับลูกค้าไทย (กรุงเทพและทั่วประเทศ)",
     type: "website",
-    url: "https://pisitdev.com",
+    url: "https://pisitdev.com/th",
     images: [
       {
         url: "/images/pisit.jpg",
@@ -67,43 +66,48 @@ export const metadata: Metadata = {
     description: "รับทำเว็บไซต์ธุรกิจ/องค์กร/อีคอมเมิร์ซ โหลดเร็ว รองรับ SEO ในไทย",
     images: ["/images/pisit.jpg"],
   },
-  icons: {
-    icon: [
-      {
-        url: "/images/pisit.jpg",
-        type: "image/jpeg",
-      },
-    ],
-    apple: "/images/pisit.jpg",
-  },
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="font-sans antialiased min-h-screen bg-background text-foreground overflow-x-hidden">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="portfolio-theme">
-          {children}
-          <Script
-            id="person-schema"
-            type="application/ld+json"
-            strategy="afterInteractive"
-          >{`{
+    <LanguageProvider initialLang="th">
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="portfolio-theme">
+        {children}
+      </ThemeProvider>
+      <Script
+        id="person-schema-th"
+        type="application/ld+json"
+        strategy="afterInteractive"
+      >{`{
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Pisit Sirisingskul",
   "jobTitle": "ฟรีแลนซ์นักพัฒนาเว็บไซต์",
   "description": "รับทำเว็บไซต์ธุรกิจ อีคอมเมิร์ซ และระบบภายใน โหลดเร็ว รองรับ SEO",
-  "url": "https://pisitdev.com",
+  "url": "https://pisitdev.com/th",
   "areaServed": "Thailand"
 }`}</Script>
-          <Analytics />
-        </ThemeProvider>
-      </body>
-    </html>
+      <Script
+        id="pro-service-schema-th"
+        type="application/ld+json"
+        strategy="afterInteractive"
+      >{`{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Pisitdev",
+  "serviceType": "Web Development",
+  "areaServed": "Thailand",
+  "url": "https://pisitdev.com/th",
+  "sameAs": [
+    "${profile.socials.github}",
+    "${profile.socials.linkedin}"
+  ],
+  "description": "ฟรีแลนซ์ทำเว็บไซต์ธุรกิจ อีคอมเมิร์ซ และระบบภายใน โหลดเร็ว รองรับ SEO",
+  "provider": {
+    "@type": "Person",
+    "name": "Pisit Sirisingskul"
+  }
+}`}</Script>
+    </LanguageProvider>
   )
 }

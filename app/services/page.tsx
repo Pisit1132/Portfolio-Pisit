@@ -1,4 +1,5 @@
 import { ServicesContent } from "../../components/services-content"
+import { SiteShell } from "@/components/site-shell"
 
 export const metadata = {
   title: "Business websites, eCommerce, internal tools | Freelance Thailand",
@@ -7,5 +8,9 @@ export const metadata = {
 }
 
 export default function ServicesPage() {
-  return <ServicesContent />
+  return (
+    <SiteShell lang="en">
+      <ServicesContent />
+    </SiteShell>
+  )
 }

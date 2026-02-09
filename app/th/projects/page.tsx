@@ -14,9 +14,9 @@ import { useLanguage } from "@/components/language-provider"
 
 const categories = ["all", "frontend", "fullstack", "backend", "aws"] as const
 
-export default function ProjectsPage() {
+export default function ProjectsPageTh() {
   return (
-    <SiteShell lang="en">
+    <SiteShell lang="th">
       <ProjectsContent />
     </SiteShell>
   )
@@ -136,7 +136,7 @@ function ProjectsContent() {
         {filteredProjects.length === 0 && (
           <AnimatedSection>
             <div className="text-center py-12">
-              <p className="text-lg text-muted-foreground">No projects found. Try adjusting your search or filters.</p>
+              <p className="text-lg text-muted-foreground">ไม่พบโปรเจกต์ ลองค้นหาหรือปรับตัวกรอง</p>
             </div>
           </AnimatedSection>
         )}

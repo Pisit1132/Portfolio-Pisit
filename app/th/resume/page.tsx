@@ -7,21 +7,21 @@ import { Download } from "lucide-react"
 import { profile } from "@/lib/profile"
 import { SiteShell } from "@/components/site-shell"
 
-export default function ResumePage() {
+export default function ResumePageTh() {
   return (
-    <SiteShell lang="en">
+    <SiteShell lang="th">
       <div className="py-20">
         <div className="mx-auto max-w-6xl px-6">
           <AnimatedSection>
             <div className="text-center space-y-4 mb-12">
-              <h1 className="text-4xl lg:text-5xl font-bold">Resume</h1>
+              <h1 className="text-4xl lg:text-5xl font-bold">เรซูเม่</h1>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                View or download the latest copy of my resume. The PDF below stays in sync with this portfolio.
+                ดูหรือดาวน์โหลดไฟล์เรซูเม่ล่าสุดด้านล่าง ไฟล์ PDF นี้อัปเดตสอดคล้องกับเว็บไซต์เสมอ
               </p>
               <Button asChild size="lg">
                 <a href={profile.resume} download>
                   <Download className="mr-2 h-4 w-4" />
-                  Download Resume (PDF)
+                  ดาวน์โหลดเรซูเม่ (PDF)
                 </a>
               </Button>
             </div>
@@ -31,7 +31,7 @@ export default function ResumePage() {
             <Card className="overflow-hidden border border-border/60 shadow-lg">
               <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/50 bg-muted/40 px-6 py-4">
                 <div>
-                  <p className="text-sm text-muted-foreground">Latest copy</p>
+                  <p className="text-sm text-muted-foreground">ไฟล์ล่าสุด</p>
                   <p className="text-lg font-semibold text-foreground">
                     {profile.name} — {profile.role}
                   </p>
@@ -47,7 +47,7 @@ export default function ResumePage() {
                   <Button asChild size="sm">
                     <a href={profile.resume} download>
                       <Download className="mr-2 h-4 w-4" />
-                      Download
+                      ดาวน์โหลด
                     </a>
                   </Button>
                 </div>
@@ -61,14 +61,14 @@ export default function ResumePage() {
                   aria-label="Resume PDF preview"
                 >
                   <div className="flex flex-col items-center justify-center gap-3 px-6 py-12 text-center">
-                    <p className="text-lg font-semibold text-foreground">Preview unavailable</p>
+                    <p className="text-lg font-semibold text-foreground">ไม่สามารถแสดงตัวอย่าง</p>
                     <p className="text-muted-foreground">
-                      Your browser blocked the embedded PDF. Use the button below to download it directly.
+                      เบราว์เซอร์บล็อกการฝัง PDF กรุณากดปุ่มด้านล่างเพื่อดาวน์โหลด
                     </p>
                     <Button asChild size="lg">
                       <a href={profile.resume} download>
                         <Download className="mr-2 h-4 w-4" />
-                        Download Resume (PDF)
+                        ดาวน์โหลดเรซูเม่ (PDF)
                       </a>
                     </Button>
                   </div>

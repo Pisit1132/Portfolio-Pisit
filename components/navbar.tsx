@@ -24,8 +24,23 @@ const navItems = [
 
 export function Navbar() {
   const pathname = usePathname()
-  const [currentHash, setCurrentHash] = useState("")
-  const { t, lang, toggle } = useLanguage()
+  const [currentHash, setCurrentHash] = useState<string>("")
+  const [mounted, setMounted] = useState(false)
+  const { t } = useLanguage()
+  const currentLocale = pathname.startsWith("/th") ? "th" : "en"
+  const switchHref =
+    currentLocale === "th"
+      ? pathname.replace(/^\/th/, "") || "/"
+      : pathname === "/" ? "/th" : `/th${pathname}`
+
+  const localizeHref = (href: string) => {
+    if (currentLocale !== "th") return href
+    if (href === "/") return "/th"
+    if (href.startsWith("/#")) return `/th${href}`
+    if (href === "/services") return "/th/services"
+    if (href === "/projects") return "/th/projects"
+    return href
+  }
 
   useEffect(() => {
     const updateHash = () => setCurrentHash(window.location.hash || "")
@@ -34,9 +49,19 @@ export function Navbar() {
     return () => window.removeEventListener("hashchange", updateHash)
   }, [])
 
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/" && (currentHash === "" || currentHash === "#")
+    if (!mounted) {
+      if (href === "/") return pathname === "/"
+      if (href.startsWith("/#")) return false
+      return pathname === href
+    }
+    if (href === "/") return pathname === "/"
     if (href.startsWith("/#")) {
+      if (!currentHash) return false
       const target = href.split("#")[1]
       return pathname === "/" && currentHash === `#${target}`
     }
@@ -60,15 +85,15 @@ export function Navbar() {
           {navItems.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              href={localizeHref(item.href)}
               className={cn(
                 "text-sm font-medium transition-colors hover:text-primary relative",
-                isActive(item.href) ? "text-foreground" : "text-muted-foreground",
+                isActive(localizeHref(item.href)) ? "text-foreground" : "text-muted-foreground",
               )}
-              aria-current={isActive(item.href) ? "page" : undefined}
+              aria-current={isActive(localizeHref(item.href)) ? "page" : undefined}
             >
               {t(`nav_${item.label.toLowerCase()}` as any) ?? item.label}
-              {isActive(item.href) && (
+              {isActive(localizeHref(item.href)) && (
                 <motion.div
                   layoutId="navbar-indicator"
                   className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-linear-to-r from-blue-600 to-teal-600"
@@ -79,8 +104,8 @@ export function Navbar() {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Button size="sm" variant="outline" onClick={toggle} className="min-w-[64px]">
-            {lang === "en" ? "EN" : "TH"}
+          <Button asChild size="sm" variant="outline" className="min-w-[64px]">
+            <Link href={switchHref}>{currentLocale === "en" ? "TH" : "EN"}</Link>
           </Button>
           <ThemeToggle />
           <Button asChild size="sm" className="hidden sm:flex">
@@ -105,19 +130,21 @@ export function Navbar() {
               </SheetHeader>
               <div className="space-y-2 px-4 pb-6 pt-2">
                 <div className="flex justify-end pb-2">
-                  <Button size="sm" variant="outline" onClick={toggle} className="min-w-[64px]">
-                    {lang === "en" ? "EN" : "TH"}
+                  <Button asChild size="sm" variant="outline" className="min-w-[64px]">
+                    <Link href={switchHref}>{currentLocale === "en" ? "TH" : "EN"}</Link>
                   </Button>
                 </div>
                 {navItems.map((item) => (
                   <SheetClose asChild key={item.href}>
                     <Link
-                      href={item.href}
+                      href={localizeHref(item.href)}
                       className={cn(
                         "block rounded-lg px-3 py-2 text-base font-medium transition-colors hover:bg-muted",
-                        isActive(item.href) ? "text-foreground bg-muted/70 border border-border/60" : "text-muted-foreground",
+                        isActive(localizeHref(item.href))
+                          ? "text-foreground bg-muted/70 border border-border/60"
+                          : "text-muted-foreground",
                       )}
-                      aria-current={isActive(item.href) ? "page" : undefined}
+                      aria-current={isActive(localizeHref(item.href)) ? "page" : undefined}
                       >
                         {t(`nav_${item.label.toLowerCase()}` as any) ?? item.label}
                     </Link>

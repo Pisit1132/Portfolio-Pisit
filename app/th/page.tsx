@@ -1,3 +1,5 @@
+"use client"
+
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
 import { ProjectsSection } from "@/components/projects-section"
@@ -9,9 +11,9 @@ import { ContactSection } from "@/components/contact-section"
 import { SeoIntro } from "@/components/seo-intro"
 import { SiteShell } from "@/components/site-shell"
 
-export default function HomePage() {
+export default function HomePageTh() {
   return (
-    <SiteShell lang="en">
+    <SiteShell lang="th">
       <HeroSection />
       <SeoIntro />
       <AboutSection />
