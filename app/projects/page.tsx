@@ -10,6 +10,7 @@ import Link from "next/link"
 import { projects } from "@/lib/projects-data"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { useLanguage } from "@/components/language-provider"
 
 const categories = ["all", "frontend", "fullstack", "backend", "aws"] as const
 
@@ -17,6 +18,7 @@ export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState<(typeof categories)[number]>("all")
   const [searchQuery, setSearchQuery] = useState("")
   const hasLink = (value?: string) => value && value !== "#"
+  const { t } = useLanguage()
 
   const filteredProjects = projects.filter((project) => {
     const matchesCategory = selectedCategory === "all" || project.category === selectedCategory
@@ -33,10 +35,8 @@ export default function ProjectsPage() {
       <div className="mx-auto max-w-7xl px-6">
         <AnimatedSection>
           <div className="text-center space-y-4 mb-12">
-            <h1 className="text-4xl lg:text-5xl font-bold">All Projects</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explore my portfolio of full-stack applications and web development projects
-            </p>
+            <h1 className="text-4xl lg:text-5xl font-bold">{t("projects_title")}</h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("projects_subtitle")}</p>
           </div>
         </AnimatedSection>
 
@@ -102,7 +102,7 @@ export default function ProjectsPage() {
                       </div>
                     </div>
                     <div className="mt-5 grid grid-cols-2 gap-2">
-                      <div className="col-span-2 text-sm font-medium text-muted-foreground">Featured work</div>
+                      <div className="col-span-2 text-sm font-medium text-muted-foreground">{t("featured_work_label")}</div>
                       {hasLink(project.links.demo) && (
                         <Button asChild size="sm" variant="outline">
                           <a href={project.links.demo} target="_blank" rel="noopener noreferrer">

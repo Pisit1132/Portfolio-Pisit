@@ -6,10 +6,12 @@ import { Button } from "./ui/button"
 import { Mail, Phone, MapPin, Copy, CheckCircle2, Download, ArrowRight } from "lucide-react"
 import { useState } from "react"
 import { profile } from "@/lib/profile"
+import { useLanguage } from "./language-provider"
 
 export function ContactSection() {
   const [copiedEmail, setCopiedEmail] = useState(false)
   const [copiedPhone, setCopiedPhone] = useState(false)
+  const { t } = useLanguage()
 
   const copyToClipboard = (text: string, type: "email" | "phone") => {
     navigator.clipboard.writeText(text)
@@ -27,10 +29,8 @@ export function ContactSection() {
       <div className="mx-auto max-w-7xl px-6">
         <AnimatedSection>
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold">Get In Touch</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Have a project in mind or want to collaborate? Feel free to reach out!
-            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold">{t("contact_title")}</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("contact_subtitle")}</p>
           </div>
         </AnimatedSection>
 

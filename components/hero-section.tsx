@@ -9,32 +9,13 @@ import Link from "next/link"
 
 import { profile } from "@/lib/profile"
 import { getFeaturedProjects } from "@/lib/projects-data"
+import { useLanguage } from "./language-provider"
 
 const socialLinks =
   [
     profile.socials.github && { href: profile.socials.github, label: "GitHub", icon: Github },
     profile.socials.linkedin && { href: profile.socials.linkedin, label: "LinkedIn", icon: Linkedin },
   ].filter(Boolean) as { href: string; label: string; icon: typeof Github }[]
-
-const impactStats = [
-  {
-    label: "Faster delivery",
-    value: "Improved release cadence",
-    detail: "On Jing Jai marketplace rollout (2025)",
-  },
-  {
-    label: "Reduced manual effort",
-    value: "~20%",
-    detail: "Listing automation & asset pipelines",
-  },
-  {
-    label: "Uptime",
-    value: "99.9%",
-    detail: "Stable launches across app stack",
-  },
-]
-
-const heroCards: { label: string; value: string; detail?: string }[] = [...profile.highlights, ...impactStats]
 
 const featured = getFeaturedProjects().slice(0, 2)
 const logos = [
@@ -44,6 +25,29 @@ const logos = [
 ]
 
 export function HeroSection() {
+  const { t, lang } = useLanguage()
+
+  const highlightsEn = profile.highlights
+  const highlightsTh = [
+    { label: "ส่วนหน้า", value: "React · Next.js · Vue · TypeScript" },
+    { label: "ส่วนหลัง", value: "Node.js · REST APIs · MySQL · MongoDB" },
+    { label: "คลาวด์ & โอเปอเรชัน", value: "ดีพลอยบน AWS · CI/CD" },
+  ]
+
+  const impactStatsEn = [
+    { label: "Faster delivery", value: "Improved release cadence", detail: "On Jing Jai marketplace rollout (2025)" },
+    { label: "Reduced manual effort", value: "~20%", detail: "Listing automation & asset pipelines" },
+    { label: "Uptime", value: "99.9%", detail: "Stable launches across app stack" },
+  ]
+
+  const impactStatsTh = [
+    { label: "ส่งมอบเร็วขึ้น", value: "รอบปล่อยงานดีขึ้น", detail: "จากการเปิดตัว Jing Jai Marketplace (2025)" },
+    { label: "ลดงานมือ", value: "ประมาณ 20%", detail: "ออโตภาพ-ข้อมูลรายการสินค้า" },
+    { label: "ความเสถียร", value: "99.9%", detail: "ดูแลการปล่อยฟีเจอร์ให้ระบบเสถียร" },
+  ]
+
+  const heroCards: { label: string; value: string; detail?: string }[] =
+    lang === "en" ? [...highlightsEn, ...impactStatsEn] : [...highlightsTh, ...impactStatsTh]
   return (
     <section className="relative isolate overflow-hidden py-10 sm:py-12 md:py-14 min-h-[calc(100vh-64px)]">
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-blue-500/5 via-transparent to-purple-500/5" />
@@ -57,7 +61,7 @@ export function HeroSection() {
               <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
                 <span>{profile.role}</span>
                 <span className="text-muted-foreground">•</span>
-                <span className="text-foreground">Based in {profile.location}</span>
+                <span className="text-foreground">{t("hero_location")}</span>
               </div>
 
               <motion.h1
@@ -66,7 +70,7 @@ export function HeroSection() {
                 transition={{ duration: 0.5 }}
                 className="text-5xl leading-tight font-bold text-balance sm:text-6xl lg:text-6xl"
               >
-                Full-stack dev shipping production web apps (React/Next.js + Node + AWS).
+                {t("hero_title")}
               </motion.h1>
 
               <motion.p
@@ -75,7 +79,7 @@ export function HeroSection() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-lg leading-relaxed text-muted-foreground sm:text-xl"
               >
-                {profile.headline}
+                {t("hero_sub")}
               </motion.p>
 
               <motion.div
@@ -89,7 +93,7 @@ export function HeroSection() {
                   {profile.location}
                 </span>
                 <span className="rounded-full bg-emerald-500/10 px-3 py-1 font-medium text-emerald-600">
-                  Open to roles & freelance
+                  {t("hero_availability")}
                 </span>
               </motion.div>
 
@@ -101,26 +105,26 @@ export function HeroSection() {
               >
                 <Button asChild size="lg" className="group">
                   <Link href="/projects">
-                    View Projects
+                    {t("hero_cta_projects")}
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
                   <a href={profile.resume} download>
                     <Download className="mr-2 h-4 w-4" />
-                    Download Resume
+                    {t("hero_cta_resume")}
                   </a>
                 </Button>
                 <Button asChild size="lg" variant="secondary">
                   <a href="https://jingjai.thairunggroup.co.th/" target="_blank" rel="noopener noreferrer">
-                    Live Demo: Jing Jai Used Car
+                    {t("hero_cta_live")}
                     <Gauge className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
                 <Button asChild size="lg" variant="ghost">
                   <a href={`mailto:${profile.email}`}>
                     <Mail className="mr-2 h-4 w-4" />
-                    Email Me
+                    {t("hero_cta_email")}
                   </a>
                 </Button>
               </motion.div>
@@ -196,7 +200,7 @@ export function HeroSection() {
                     key={project.slug}
                     className="rounded-xl border border-border/60 bg-card/80 p-4 shadow-sm backdrop-blur-sm pressable"
                   >
-                    <p className="text-xs font-semibold uppercase text-primary">Featured Project</p>
+                    <p className="text-xs font-semibold uppercase text-primary">{t("featured_project_label")}</p>
                     <h3 className="text-lg font-bold text-foreground">{project.title}</h3>
                     <p className="text-sm text-muted-foreground line-clamp-2">{project.summary}</p>
                     <div className="mt-3 flex flex-wrap gap-2 text-xs font-medium">

@@ -1,6 +1,9 @@
+"use client"
+
 import { Github, Linkedin, Mail, Phone } from "lucide-react"
 
 import { profile } from "@/lib/profile"
+import { useLanguage } from "./language-provider"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -9,6 +12,8 @@ export function Footer() {
       profile.socials.github && { href: profile.socials.github, label: "GitHub", icon: Github },
       profile.socials.linkedin && { href: profile.socials.linkedin, label: "LinkedIn", icon: Linkedin },
     ].filter(Boolean) as { href: string; label: string; icon: typeof Github }[]
+
+  const { t } = useLanguage()
 
   return (
     <footer className="border-t border-border/50 bg-card/70 backdrop-blur">
@@ -58,13 +63,16 @@ export function Footer() {
           </div>
           <div className="flex flex-wrap gap-3">
             <a className="hover:text-foreground" href="/projects">
-              Projects
+              {t("nav_projects")}
+            </a>
+            <a className="hover:text-foreground" href="/services">
+              {t("nav_services")}
             </a>
             <a className="hover:text-foreground" href="/resume">
-              Resume
+              {t("nav_resume")}
             </a>
             <a className="hover:text-foreground" href="/#contact">
-              Contact
+              {t("nav_contact")}
             </a>
           </div>
         </div>

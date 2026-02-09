@@ -3,45 +3,77 @@
 import { AnimatedSection } from "./animated-section"
 import { Card } from "./ui/card"
 import { GraduationCap, Plane } from "lucide-react"
+import { useLanguage } from "./language-provider"
+import { cn } from "@/lib/utils"
+
+const educationEn = [
+  {
+    title: "Bachelor of Engineering (Computer Engineering)",
+    school: "Mahidol University International College",
+    extra: null,
+  },
+  {
+    title: "Study Abroad",
+    school: "University of Groningen, Netherlands",
+    bullets: ["Focus: Web Application Architecture", "Built: REST API + MongoDB music-search application"],
+  },
+]
+
+const educationTh = [
+  {
+    title: "วิศวกรรมศาสตรบัณฑิต (วิศวกรรมคอมพิวเตอร์)",
+    school: "วิทยาลัยนานาชาติ มหาวิทยาลัยมหิดล",
+    extra: null,
+  },
+  {
+    title: "โครงการแลกเปลี่ยน",
+    school: "University of Groningen, เนเธอร์แลนด์",
+    bullets: ["โฟกัส: Web Application Architecture", "สร้าง REST API + MongoDB สำหรับค้นหาเพลง"],
+  },
+]
 
 export function EducationSection() {
+  const { t } = useLanguage()
+  const data = t("nav_home") === "Home" ? educationEn : educationTh
   return (
     <section id="education" className="py-24 bg-muted/30">
       <div className="mx-auto flex max-w-7xl flex-col items-center px-6">
         <AnimatedSection>
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold">Education</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold">{t("education_title")}</h2>
           </div>
         </AnimatedSection>
 
         <div className="w-full max-w-4xl space-y-6">
-          <AnimatedSection>
-            <Card className="p-6 hover:shadow-lg transition-all bg-card/70 backdrop-blur border-border/60 pressable">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                <GraduationCap className="h-8 w-8 text-primary shrink-0" />
-                <div className="space-y-2 text-left">
-                  <h3 className="text-xl font-bold text-foreground">Bachelor of Engineering (Computer Engineering)</h3>
-                  <p className="text-lg text-primary">Mahidol University International College</p>
-                </div>
-              </div>
-            </Card>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.1}>
-            <Card className="p-6 hover:shadow-lg transition-all bg-card/70 backdrop-blur border-border/60 lg:border-l-4 lg:border-l-blue-500 pressable">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                <Plane className="h-8 w-8 text-blue-500 shrink-0" />
-                <div className="space-y-2 text-left">
-                  <h3 className="text-xl font-bold">Study Abroad</h3>
-                  <p className="text-lg text-blue-500">University of Groningen, Netherlands</p>
-                  <div className="space-y-1 text-muted-foreground">
-                    <p>• Focus: Web Application Architecture</p>
-                    <p>• Built: REST API + MongoDB music-search application</p>
+          {data.map((item, idx) => (
+            <AnimatedSection key={item.title} delay={idx * 0.1}>
+              <Card
+                className={cn(
+                  "p-6 hover:shadow-lg transition-all bg-card/70 backdrop-blur border-border/60 pressable",
+                  idx === 1 ? "lg:border-l-4 lg:border-l-blue-500" : "",
+                )}
+              >
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                  {idx === 0 ? (
+                    <GraduationCap className="h-8 w-8 text-primary shrink-0" />
+                  ) : (
+                    <Plane className="h-8 w-8 text-blue-500 shrink-0" />
+                  )}
+                  <div className="space-y-2 text-left">
+                    <h3 className="text-xl font-bold text-foreground">{item.title}</h3>
+                    <p className={cn("text-lg", idx === 1 ? "text-blue-500" : "text-primary")}>{item.school}</p>
+                    {item.bullets && (
+                      <div className="space-y-1 text-muted-foreground">
+                        {item.bullets.map((b) => (
+                          <p key={b}>• {b}</p>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
-              </div>
-            </Card>
-          </AnimatedSection>
+              </Card>
+            </AnimatedSection>
+          ))}
         </div>
       </div>
     </section>

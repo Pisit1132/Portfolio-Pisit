@@ -4,6 +4,7 @@ import { AnimatedSection } from "./animated-section"
 import { Card } from "./ui/card"
 import { Award } from "lucide-react"
 import { Button } from "./ui/button"
+import { useLanguage } from "./language-provider"
 
 const certifications = [
   {
@@ -29,12 +30,13 @@ const certifications = [
 ]
 
 export function CertificationsSection() {
+  const { t } = useLanguage()
   return (
     <section id="certifications" className="py-24">
       <div className="mx-auto max-w-7xl px-6">
         <AnimatedSection>
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold">Certifications</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold">{t("certifications_title")}</h2>
           </div>
         </AnimatedSection>
 

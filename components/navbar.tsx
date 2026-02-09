@@ -10,10 +10,12 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet"
 import { profile } from "@/lib/profile"
+import { useLanguage } from "./language-provider"
 
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
+  { href: "/services", label: "Services" },
   { href: "/#experience", label: "Experience" },
   { href: "/#skills", label: "Skills" },
   { href: "/resume", label: "Resume" },
@@ -23,6 +25,7 @@ const navItems = [
 export function Navbar() {
   const pathname = usePathname()
   const [currentHash, setCurrentHash] = useState("")
+  const { t, lang, toggle } = useLanguage()
 
   useEffect(() => {
     const updateHash = () => setCurrentHash(window.location.hash || "")
@@ -64,7 +67,7 @@ export function Navbar() {
               )}
               aria-current={isActive(item.href) ? "page" : undefined}
             >
-              {item.label}
+              {t(`nav_${item.label.toLowerCase()}` as any) ?? item.label}
               {isActive(item.href) && (
                 <motion.div
                   layoutId="navbar-indicator"
@@ -76,6 +79,9 @@ export function Navbar() {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
+          <Button size="sm" variant="outline" onClick={toggle} className="min-w-[64px]">
+            {lang === "en" ? "EN" : "TH"}
+          </Button>
           <ThemeToggle />
           <Button asChild size="sm" className="hidden sm:flex">
             <a href={profile.resume} download>
@@ -98,6 +104,11 @@ export function Navbar() {
                 <SheetTitle>Navigate</SheetTitle>
               </SheetHeader>
               <div className="space-y-2 px-4 pb-6 pt-2">
+                <div className="flex justify-end pb-2">
+                  <Button size="sm" variant="outline" onClick={toggle} className="min-w-[64px]">
+                    {lang === "en" ? "EN" : "TH"}
+                  </Button>
+                </div>
                 {navItems.map((item) => (
                   <SheetClose asChild key={item.href}>
                     <Link
@@ -107,8 +118,8 @@ export function Navbar() {
                         isActive(item.href) ? "text-foreground bg-muted/70 border border-border/60" : "text-muted-foreground",
                       )}
                       aria-current={isActive(item.href) ? "page" : undefined}
-                    >
-                      {item.label}
+                      >
+                        {t(`nav_${item.label.toLowerCase()}` as any) ?? item.label}
                     </Link>
                   </SheetClose>
                 ))}

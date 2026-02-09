@@ -3,6 +3,7 @@
 import { AnimatedSection } from "./animated-section"
 import { Card } from "./ui/card"
 import { Code2, Server, Cloud } from "lucide-react"
+import { useLanguage } from "./language-provider"
 
 const features = [
   {
@@ -23,16 +24,14 @@ const features = [
 ]
 
 export function AboutSection() {
+  const { t } = useLanguage()
   return (
     <section id="about" className="py-24 bg-muted/30">
       <div className="mx-auto max-w-7xl px-6">
         <AnimatedSection>
           <div className="max-w-3xl mx-auto text-center space-y-4 mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold">About Me</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Full-Stack Developer based in Bangkok. I build modern web applications end-to-end—from responsive UI to
-              backend services and database design.
-            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold">{t("about_title")}</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">{t("about_subtitle")}</p>
           </div>
         </AnimatedSection>
 

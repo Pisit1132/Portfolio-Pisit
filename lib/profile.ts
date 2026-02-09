@@ -1,7 +1,7 @@
 export const profile = {
   name: "Pisit Sirisingskul",
   role: "Full-Stack Developer",
-  headline: "Building scalable web apps across frontend, backend, and cloud.",
+  headline: "ฟรีแลนซ์รับทำเว็บไซต์ธุรกิจ องค์กร อีคอมเมิร์ซ โหลดเร็ว รองรับ SEO และลูกค้าไทย",
   location: "Bangkok, Thailand",
   email: "pisit.srsk@gmail.com",
   phone: "+66 82-208-9668",

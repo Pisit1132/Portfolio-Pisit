@@ -8,20 +8,20 @@ import Link from "next/link"
 import { getFeaturedProjects } from "@/lib/projects-data"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { useLanguage } from "./language-provider"
 
 export function ProjectsSection() {
   const projects = getFeaturedProjects()
   const hasLink = (value?: string) => value && value !== "#"
+  const { t } = useLanguage()
 
   return (
     <section id="projects" className="py-24">
       <div className="mx-auto max-w-7xl px-6">
         <AnimatedSection>
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold">Featured Projects</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A selection of projects showcasing my full-stack development capabilities
-            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold">{t("projects_title")}</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("projects_subtitle")}</p>
           </div>
         </AnimatedSection>
 
@@ -59,7 +59,7 @@ export function ProjectsSection() {
                       </div>
                     </div>
                     <div className="mt-5 flex items-center gap-2">
-                      <div className="flex-1 text-sm font-medium text-muted-foreground">Featured work</div>
+                      <div className="flex-1 text-sm font-medium text-muted-foreground">{t("featured_work_label")}</div>
                       {hasLink(project.links.demo) && (
                         <Button asChild size="sm" variant="ghost">
                           <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
@@ -86,7 +86,7 @@ export function ProjectsSection() {
           <div className="text-center">
             <Button asChild size="lg" variant="outline">
               <Link href="/projects">
-                View All Projects
+                {t("view_all_projects_btn")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
