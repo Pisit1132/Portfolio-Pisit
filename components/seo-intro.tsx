@@ -12,6 +12,7 @@ export function SeoIntro() {
           <div className="space-y-4">
             <h1 className="text-3xl sm:text-4xl font-bold text-foreground">{t("seo_h1")}</h1>
             <p className="text-lg text-muted-foreground leading-relaxed">{t("seo_intro")}</p>
+            <p className="text-base text-muted-foreground leading-relaxed">{t("seo_local")}</p>
           </div>
         </AnimatedSection>
 

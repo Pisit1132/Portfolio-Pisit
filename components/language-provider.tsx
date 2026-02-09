@@ -60,6 +60,7 @@ const dictionaries: Record<Lang, Dictionary> = {
     seo_h1: "Websites that load fast, rank well, and convert",
     seo_intro:
       "I build business websites, eCommerce, and internal tools that are fast, modern, and SEO-ready—so customers can find you and take action.",
+    seo_local: "Bangkok-based freelancer serving clients across Thailand. Local SEO-friendly, fast, and mobile-first.",
     seo_services_title: "Website Services",
     seo_services_1: "Corporate and business websites",
     seo_services_2: "Web development with React and Next.js",
@@ -150,6 +151,7 @@ const dictionaries: Record<Lang, Dictionary> = {
     seo_h1: "เว็บไซต์โหลดเร็ว ติดอันดับ และเพิ่มโอกาสการขาย",
     seo_intro:
       "ผมทำเว็บไซต์ธุรกิจ อีคอมเมิร์ซ และระบบภายในที่โหลดเร็ว ทันสมัย โครงสร้างรองรับ SEO เพื่อให้ลูกค้าเจอคุณง่ายขึ้น",
+    seo_local: "ฟรีแลนซ์ในกรุงเทพ รับงานทั่วประเทศไทย เว็บโหลดเร็ว โครงสร้างรองรับ SEO และเหมาะกับมือถือ",
     seo_services_title: "บริการรับทำเว็บไซต์",
     seo_services_1: "รับทำเว็บไซต์บริษัท / เว็บไซต์ธุรกิจ",
     seo_services_2: "เว็บไซต์อีคอมเมิร์ซและแคตตาล็อกสินค้า",
